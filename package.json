@@ -4,11 +4,19 @@
   "description": "Prueba técnica para Grupo Central",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Inti Pontt <inti.pontt@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^6.2.1",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
