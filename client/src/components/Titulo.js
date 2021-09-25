@@ -1,8 +1,6 @@
-import Placeholder from './Placeholder';
-
 function Titulo() {
 	return (
-		<Placeholder className="w-full h-8"/>
+		<h1 className="text-center text-lg lg:text-2xl font-medium tracking-widest">Visor Chileno COVID</h1>
 	);
 }
 
