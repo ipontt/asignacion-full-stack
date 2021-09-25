@@ -3,17 +3,11 @@ import ListaComunas from './components/Comunas/Lista';
 import Titulo from './components/Titulo';
 import { useState } from 'react';
 
-const comunas = [
-  {id: 1, nombre: 'Arica'},
-  {id: 2, nombre: 'Brica'},
-  {id: 3, nombre: 'Crica'},
-  {id: 4, nombre: 'Drica'},
-  {id: 5, nombre: 'Erica'},
-  {id: 6, nombre: 'Frica'},
-];
-
 function App() {
+  const [comunas, setComunas] = useState([]);
   const [comuna, setComuna] = useState(comunas[0]);
+
+  fetch('api/').then(res => res.json()).then(comunas => setComunas(comunas));
 
   function verDetallesComuna(comuna) {
     setComuna(comuna);
