@@ -26,7 +26,7 @@ function Lista({ comunas, verComuna }) {
 	}
 
 	return (
-		<div className="w-full flex flex-col border border-gray-700 h-96">
+		<div className="w-full flex flex-col border border-gray-700" style={{maxHeight: '36rem'}}>
 			<div className="flex justify-around items-center">
 				{tabs.map((tab, index) => (
 					<button
@@ -53,10 +53,10 @@ function Lista({ comunas, verComuna }) {
 				<div
 					className={classNames(
 						(currentTab === 'Comunas') ? '' : 'hidden',
-						"flex-grow overflow-y-scroll bg-gray-100 p-2"
+						"flex-grow border border-gray-700 overflow-y-scroll p-2"
 					)}
 				>
-					<ul className="p-2 max-h-36">
+					<ul className="p-2" style={{height: '26.5rem'}}>
 						{comunas.filter(comuna => comuna.nombre.toLowerCase().includes(search)).map(comuna => (
 							<li key={`com-${comuna.id}`} className="flex justify-between items-center">
 								<button onClick={() => verComuna(comuna)}>{comuna.nombre}</button>
@@ -73,13 +73,13 @@ function Lista({ comunas, verComuna }) {
 				<div
 					className={classNames(
 						(currentTab === 'Favoritas') ? '' : 'hidden',
-						"flex-grow border border-blue-500 overflow-y-scroll"
+						"flex-grow border border-gray-700 overflow-y-scroll p-2"
 					)}
 				>
-					<ul className="p-2">
+					<ul className="p-2" style={{height: '26.5rem'}}>
 						{comunasFavoritas.filter(comuna => comuna.nombre.toLowerCase().includes(search)).map(comuna => (
 							<li key={`fav-${comuna.id}`} className="flex justify-between items-center">
-								<button>{comuna.nombre}</button>
+								<button onClick={() => verComuna(comuna)}>{comuna.nombre}</button>
 								<button
 									className="text-2xl transition hover:scale-150 ease-in-out transform duration-300"
 									onClick={() => toggleFav(comuna)}
