@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [comunas, setComunas] = useState([]);
-  const [comuna, setComuna] = useState(null);
+  const [comuna, setComuna] = useState({});
 
   useEffect(() => {
     fetch('api/comunas/')
