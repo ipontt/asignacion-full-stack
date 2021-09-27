@@ -1,17 +1,27 @@
 const express = require('express');
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('./db/database.sqlite');
 const app = express();
 
-app.get('/api/', (request, response) => {
-	response.json([
-		{id: 1, nombre: 'Arica'},
-		{id: 2, nombre: 'Brica'},
-		{id: 3, nombre: 'Crica'},
-		{id: 4, nombre: 'Drica'},
-		{id: 5, nombre: 'Erica'},
-		{id: 6, nombre: 'Frica'},
-	]);
+app.get('/api/comunas/', (request, response) => {
+	db.all(
+		`SELECT c.id, c.nombre, r.nombre as region
+		FROM comunas AS c
+		INNER JOIN regiones AS r ON r.id = c.region_id
+		WHERE c.nombre NOT LIKE ?
+		ORDER BY c.nombre ASC`, ['Desconocid%'],
+		(error, result) => {
+			if (error) {
+				response.json(error);
+			}
+			response.json(result);
+		}
+	);
 });
 
 const port = 8000;
 
 app.listen(port, () => `Server running on port ${port}.`);
+
+process.on('SIGINT', () => db.close());
+process.on('exit', () => db.close());

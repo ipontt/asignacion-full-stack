@@ -1,13 +1,21 @@
 import DetalleComuna from './components/Comunas/Detalle';
 import ListaComunas from './components/Comunas/Lista';
 import Titulo from './components/Titulo';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [comunas, setComunas] = useState([]);
-  const [comuna, setComuna] = useState(comunas[0]);
+  const [comuna, setComuna] = useState(null);
 
-  fetch('api/').then(res => res.json()).then(comunas => setComunas(comunas));
+  useEffect(() => {
+    fetch('api/comunas/')
+      .then(res => res.json())
+      .then(comunas => {
+        console.log(comunas);
+        setComunas(comunas);
+        setComuna(comunas[0]);
+      });
+  }, []);
 
   function verDetallesComuna(comuna) {
     setComuna(comuna);
@@ -20,7 +28,7 @@ function App() {
           <div className="px-4 py-5 sm:px-6">
             <Titulo/>
           </div>
-          <div className="px-4 py-5 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="px-4 py-5 sm:p-6 grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
             <div className="lg:col-span-1">
               <ListaComunas comunas={comunas} verComuna={verDetallesComuna}/>
             </div>
