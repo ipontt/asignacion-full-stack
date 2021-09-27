@@ -26,7 +26,7 @@ function Lista({ comunas, verComuna }) {
 	}
 
 	return (
-		<div className="w-full h-96 flex flex-col border border-gray-700">
+		<div className="w-full flex flex-col border border-gray-700 h-96">
 			<div className="flex justify-around items-center">
 				{tabs.map((tab, index) => (
 					<button
@@ -41,11 +41,11 @@ function Lista({ comunas, verComuna }) {
 					</button>
 				))}
 			</div>
-			<div className="flex gap-4 flex-col flex-grow border border-gray-700 p-4 bg-green-300">
+			<div className="flex gap-4 flex-col flex-grow border border-gray-700 p-4">
 				<div className="flex justify-center">
 					<input
 						onChange={event => setSearch(event.target.value)}
-						className="flex-grow px-2 py-1 border border-gray-700"
+						className="flex-grow px-2 py-1 border border-gray-700 bg-gray-100"
 						type="text"
 						role="search"
 						placeholder="Buscador"/>
@@ -53,10 +53,10 @@ function Lista({ comunas, verComuna }) {
 				<div
 					className={classNames(
 						(currentTab === 'Comunas') ? '' : 'hidden',
-						"flex-grow border border-red-500"
+						"flex-grow overflow-y-scroll bg-gray-100 p-2"
 					)}
 				>
-					<ul className="p-2">
+					<ul className="p-2 max-h-36">
 						{comunas.filter(comuna => comuna.nombre.toLowerCase().includes(search)).map(comuna => (
 							<li key={`com-${comuna.id}`} className="flex justify-between items-center">
 								<button onClick={() => verComuna(comuna)}>{comuna.nombre}</button>
@@ -73,7 +73,7 @@ function Lista({ comunas, verComuna }) {
 				<div
 					className={classNames(
 						(currentTab === 'Favoritas') ? '' : 'hidden',
-						"flex-grow border border-blue-500"
+						"flex-grow border border-blue-500 overflow-y-scroll"
 					)}
 				>
 					<ul className="p-2">
