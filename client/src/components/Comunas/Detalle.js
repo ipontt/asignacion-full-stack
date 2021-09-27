@@ -1,20 +1,23 @@
 import Grafico from './Grafico';
 import Tabla from './Tabla';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function Detalle({ comuna }) {
-	const nombre = comuna.nombre;
-	const id = comuna.id;
+	const [casos, setCasos] = useState([]);
 
-  useEffect(() => {
-  	console.log(nombre);
-  }, [nombre]);
+	useEffect(() => {
+		if (Object.keys(comuna).length !== 0) {
+			fetch(`api/comunas/${comuna.id}/casos`)
+				.then(res => res.json())
+				.then(casos => setCasos(casos));
+		}
+	}, [comuna]);
 
 	return (
 		<div className="flex flex-col gap-4 h-96">
-			<span className="text-2xl">{ nombre } ♥</span>
-			<Grafico/>
-			<Tabla comunaId={ id }/>
+			<span className="text-2xl">{ comuna?.nombre } ♥</span>
+			<Grafico casos={ casos }/>
+			<Tabla casos={ casos }/>
 		</div>
 	);
 }

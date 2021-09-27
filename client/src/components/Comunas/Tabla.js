@@ -1,20 +1,4 @@
-import { useEffect, useState } from 'react';
-
-function Tabla({ comunaId }) {
-	const [casos, setCasos] = useState([]);
-
-	useEffect(() => {
-		if (comunaId) {
-			fetch(`api/comunas/${comunaId}/casos`)
-				.then(res => res.json())
-				.then(casos => setCasos(casos));
-		}
-	}, [comunaId]);
-
-	useEffect(() => {
-		console.log(casos);
-	}, [casos])
-
+function Tabla({ casos }) {
 	return (
 		<div className="w-full flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
