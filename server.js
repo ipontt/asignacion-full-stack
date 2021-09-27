@@ -19,6 +19,23 @@ app.get('/api/comunas/', (request, response) => {
 	);
 });
 
+app.get('/api/comunas/:comuna_id/casos/', (request, response) => {
+	const { comuna_id } = request.params;
+
+	db.all(
+		`SELECT c.fecha, c.cantidad
+		FROM casos AS c
+		WHERE comuna_id = ?
+		ORDER BY c.fecha`, [comuna_id],
+		(error, result) => {
+			if (error) {
+				response.json(error);
+			}
+			response.json(result);
+		}
+	);
+});
+
 const port = 8000;
 
 app.listen(port, () => `Server running on port ${port}.`);
