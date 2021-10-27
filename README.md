@@ -6,7 +6,7 @@
 
  1. Clonar este repositorio
  2. Instalar las dependencias del servidor con `npm install`.
- 3. Instalar las dependencias del cliente con `npm client-install`.
+ 3. Instalar las dependencias del cliente con `npm run client-install`.
  4. Levantar servidor de desarrollo con el comando `npm run dev`.
 
 ### Acerca de la base de datos
@@ -35,4 +35,4 @@ Los datos contenidos dentro son los mismos que están en https://github.com/MinC
 
 ## Otros Detalles
 
-Se usa `proxy: ` para que el cliente pueda comunicarse con el servidor sin tener que escribir la url completa de este en localhost.
+Se usa `proxy:` para que el cliente pueda comunicarse con el servidor sin tener que escribir la url completa de éste en `localhost`.
